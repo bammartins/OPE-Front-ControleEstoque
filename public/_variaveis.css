@@ -1,0 +1,32 @@
+:root {
+    --fonte-familia-corpo: 'Roboto', sans-serif;
+    /*'Montserrat', sans-serif;*/
+    --fonte-familia-logo: 'Pacifico', cursive;
+
+    --fonte-peso-input: 300;
+
+    --fonte-tamanho-logo: 28px;
+    --fonte-tamanho-cartao-titulo: 30px;
+    --fonte-tamanho-input-label: 20px;
+    --fonte-tamanho-botao: 20px;
+    --fonte-tamanho-formulario-fieldset: 25px;
+    --fonte-tamanho-tabela-cabecalho: 22px;
+    --fonte-tamanho-modal-titulo: 28px;
+    --fonte-tamanho-modal-botao: 28px;
+    
+    --cor-primaria: #771a53;
+    --cor-secundaria: #e9dec5;
+    --cor-contraste-escuro: #771a53;
+    --cor-contraste-claro: #fff;
+    --cor-aviso: #df2525;
+    --cor-sucesso: #047900;
+    --cor-transparencia: #771a53;
+
+    --sombra: 0 5px 10px #666154;
+}
+
+@media(min-width: 800px) {
+    :root {
+        --fonte-tamanho-logo: 56px;
+    }
+}
