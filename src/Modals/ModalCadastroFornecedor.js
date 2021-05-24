@@ -1,5 +1,6 @@
 import { Modal, Form, Col, Button } from "react-bootstrap";
 import styled from "styled-components";
+import {useState} from "react";
 
 const Label = styled(Form.Label)`
     margin-bottom: 8px;
@@ -11,6 +12,9 @@ const SubLabel = styled.span`
 `
 
 export default function ModalCadastroFornecedor(props) {
+    const [nomeFantasia, setNomeFantasia] = useState('')
+    const [senha, setSenha] = useState('')
+
     return (
         <Modal show={props.show} onHide={props.onCloseListener}>
             <Modal.Header closeButton>
@@ -19,8 +23,8 @@ export default function ModalCadastroFornecedor(props) {
             <Form>
                 <Modal.Body>
                     <Form.Group controlId="">
-                        <Label for="codigo">Nome do Fornecedor</Label>
-                        <Form.Control name="codigo" placeholder="Insira o nome do fornecedor" required={true} />
+                        <Label for="codigo">Nome Fantasia</Label>
+                        <Form.Control name="codigo" placeholder="Insira o nome fantasia" required={true} />
                         <Form.Control.Feedback type="invalid">Este campo não está válido</Form.Control.Feedback>
                     </Form.Group>
 

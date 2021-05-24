@@ -1,5 +1,7 @@
 import { Modal, Form, Button } from "react-bootstrap";
 import styled from "styled-components";
+import {useState} from "react";
+import axios from "axios";
 
 const Label = styled(Form.Label)`
     margin-bottom: 8px;
@@ -11,6 +13,34 @@ const Checkbox = styled(Form.Check)`
     align-items: center;
 `;
 export default function ModalCadastroProduto(props) {
+    const [categoria, setCategoria] = useState('')
+    const [preco, setPreco] = useState('')
+    const [quantidade, setQuantidade] = useState('')
+    const [modelo, setModelo] = useState('')
+    const [cor, setCor] = useState('')
+    const [marca, setMarca] = useState('')
+    const [fornecedor, setFornecedor] = useState('')
+    const [tamanho, setTamanho] = useState('')
+
+    const clickHandler = () => {
+        axios.post('http://localhost:8080/produtos', {
+            "categoria" : categoria,
+            "preco" : preco,
+            "quantidade" : quantidade,
+            "modelo" : modelo,
+            "cor" : cor,
+            "marca" : marca,
+            "fornecedor" : fornecedor,
+            "tamanho" : tamanho
+        })
+            .then(responde => {
+                console.log("Deu bom", responde)
+            })
+            .catch(error => {
+                console.log("Deu RUIM!!!", error)
+            })
+    }
+
     return (
         <Modal show={props.show} onHide={props.onCloseListener}>
             <Modal.Header closeButton>
@@ -91,7 +121,7 @@ export default function ModalCadastroProduto(props) {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={props.handleCloseListener} block>
+                <Button variant="primary" onClick={clickHandler} block>
                     Efetuar cadastro
                 </Button>
             </Modal.Footer>
