@@ -33,6 +33,11 @@ export default function ModalRelatorioEstoque(props) {
     // })
 
     return (
+
+        /*
+            - DEMOS UMA ENXUGADA NO RELATÓRIO ONDE BASTA ESCOLHER O QUE DESEJA BUSCAR POR DIA OU MÊS
+         */
+
         <Modal show={props.show} onHide={props.onCloseListener}>
             <Modal.Header closeButton>
                 <Modal.Title>Gerar relatório</Modal.Title>
@@ -114,6 +119,10 @@ export default function ModalRelatorioEstoque(props) {
                     </Form.Group>
 
                     <hr />
+
+                    {/*
+                        - NO CAMPO "SALVAR EM" COLOCAREMOS O LOCAL NO QUAL O ARQUIVO PDF SERÁ SALVO
+                    */}
 
                     <Form.Group controlId="">
                         <Label for="save">Salvar em...</Label>

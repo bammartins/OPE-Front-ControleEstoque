@@ -41,10 +41,10 @@ export default function ModalCadastroProduto(props) {
             })
     }
 
-    axios.get('http://localhost:8080/categorias/todas?', {
-    }).then(response => {
-        categoria = response.data
-    })
+    // axios.get('http://localhost:8080/categorias/todas?', {
+    // }).then(response => {
+    //     response.data.nome
+    // })
 
     return (
         <Modal show={props.show} onHide={props.onCloseListener}>
@@ -61,6 +61,9 @@ export default function ModalCadastroProduto(props) {
                             ))}
                         </Form.Control>
                     </Form.Group>
+                    {/*
+                        Precisamos criar um campo para criar uma Categoria caso não possua nas categorias listadas
+                    */}
 
                     <Form.Group controlId="">
                         <Form.Label for="codigo">Preço</Form.Label>

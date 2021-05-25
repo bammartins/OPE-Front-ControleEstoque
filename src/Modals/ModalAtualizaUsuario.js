@@ -1,11 +1,20 @@
 import { Modal, Form, Button } from "react-bootstrap";
 import styled from "styled-components";
+import {useState} from "react";
+import axios from "axios";
 
 const Label = styled(Form.Label)`
     margin-bottom: 8px;
 `
 
 export default function ModalAtualizaUsuario(props) {
+
+    let nome;
+    axios.get('http://localhost:8080/acesso/todos?idUsuario', {
+    }).then(response => {
+        nome = response.data
+    })
+
     return (
         <Modal show={props.show} onHide={props.onCloseListener}>
             <Modal.Header closeButton>
@@ -16,9 +25,9 @@ export default function ModalAtualizaUsuario(props) {
                     <Form.Group controlId="">
                         <Form.Label for="codigo">Usuaŕio</Form.Label>
                         <Form.Control as="select" required>
-                            <option value="" selected disabled>Escolha...</option>
-                            <option value="AX">Amanda</option>
-                            <option value="AL">Maria</option>
+                            {/*{nome.forEach(nome => (*/}
+                            {/*    <option value="" selected disabled>{nome}</option>*/}
+                            {/*))}*/}
                         </Form.Control>
                     </Form.Group>
 

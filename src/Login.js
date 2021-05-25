@@ -106,6 +106,7 @@ export default function Login() {
                 setSenha("")
                 alert("Login Inválido");
             })
+    //    Login: cmurilo / senha:admin123
     }
 
     return (

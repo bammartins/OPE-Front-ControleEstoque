@@ -21,9 +21,7 @@ export default function ModalMovimentacaoDeProduto(props) {
         axios.get('http://localhost:8080/movimentacao/todas', {
         })
             .then(response => {
-                categoria = response.data
-                fornecedor = response.data
-                marca = response.data
+                console.log(response.data)
             })
     }
 
@@ -67,9 +65,9 @@ export default function ModalMovimentacaoDeProduto(props) {
                     <Form.Group controlId="">
                         <Form.Label for="fornecedor">Forncecedor</Form.Label>
                         <Form.Control as="select" required>
-                            {fornecedor.forEach(fornecedor => (
-                                <option value="" selected disabled>{categoria}</option>
-                            ))}
+                            {/*{fornecedor.forEach(fornecedor => (*/}
+                            {/*    <option value="" selected disabled>{categoria}</option>*/}
+                            {/*))}*/}
                         </Form.Control>
                     </Form.Group>
 
@@ -94,6 +92,11 @@ export default function ModalMovimentacaoDeProduto(props) {
                     ))}
 
                     <br/>
+
+                    {/*
+                        Nesse trecho excluímos a saída da movimentação e deixamos em um modal somente.
+                        O que difere é o ENUM que está no backend como AUMENTO e RETIRADA
+                    */}
 
                     <Form.Group>
                         <Form.Label for="tipoMovimentacao">Tipo Movimentação</Form.Label>
