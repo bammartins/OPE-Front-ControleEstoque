@@ -31,6 +31,21 @@ export default function ModalCadastroFornecedor(props) {
                     <hr />
 
                     <Form.Group controlId="">
+                        <Label for="razaoSocial">Razão Social</Label>
+                        <Form.Control name="razaoSocial" placeholder="Insira a razão social" required={true} />
+                        <Form.Control.Feedback type="invalid">Este campo não está válido</Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group controlId="">
+                        <Label for="cnpj">CNPJ</Label>
+                        <Form.Control name="numreg" pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"
+                                      required />
+                        <Form.Control.Feedback type="invalid">Este campo não está válido</Form.Control.Feedback>
+                    </Form.Group>
+
+                    <hr />
+
+                    <Form.Group controlId="">
                         <Label for="codigo">Telefone</Label>
                         <Form.Control name="codigo" placeholder="(XX) XXXXX-XXXX" required={true} />
                         <Form.Control.Feedback type="invalid">Este campo não está válido</Form.Control.Feedback>
@@ -46,6 +61,12 @@ export default function ModalCadastroFornecedor(props) {
                     <Form.Group controlId="">
                         <Label for="codigo">Endereco</Label>
                         <Form.Control name="email" placeholder="Ex: Rua Augusta, 222" />
+                        <Form.Control.Feedback type="invalid">Este campo não está válido</Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group controlId="">
+                        <Label for="bairro">Bairro</Label>
+                        <Form.Control name="bairro" placeholder="Ex: Parque Sem Nome" />
                         <Form.Control.Feedback type="invalid">Este campo não está válido</Form.Control.Feedback>
                     </Form.Group>
 
@@ -82,24 +103,6 @@ export default function ModalCadastroFornecedor(props) {
                     <Form.Group controlId="">
                         <Label for="codigo">CEP</Label>
                         <Form.Control placeholder="XXXXX-XXX" />
-                        <Form.Control.Feedback type="invalid">Este campo não está válido</Form.Control.Feedback>
-                    </Form.Group>
-
-                    <hr />
-
-                    <Form.Group controlId="">
-                        <Label for="codigo">Documento</Label>
-                        <Form.Control as="select" required>
-                            <option value="" selected disabled>Escolha...</option>
-                            <option value="AF">CPF</option>
-                            <option value="AX">CNPJ</option>
-                        </Form.Control>
-                    </Form.Group>
-
-                    <Form.Group controlId="">
-                        <Label for="codigo">Número do Documento</Label>
-                        <Form.Control name="numreg" pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"
-                            required />
                         <Form.Control.Feedback type="invalid">Este campo não está válido</Form.Control.Feedback>
                     </Form.Group>
 
