@@ -1,5 +1,7 @@
 import { Modal, Button, Form } from "react-bootstrap";
 import styled from "styled-components";
+import axios from "axios";
+import {useState} from "react";
 
 
 const Checkbox = styled(Form.Check)`
@@ -8,6 +10,28 @@ const Checkbox = styled(Form.Check)`
     align-items: center;
 `;
 export default function ModalMovimentacaoDeProduto(props) {
+
+    const [codigoProduto, getCodigoProduto] = useState('')
+
+    let categoria = []
+    let fornecedor = []
+    let marca = []
+
+    const clickHandlerBusca = () => {
+        axios.get('http://localhost:8080/movimentacao/todas', {
+        })
+            .then(response => {
+                categoria = response.data
+                fornecedor = response.data
+                marca = response.data
+            })
+    }
+
+    const clickHandler = () => {
+        axios.post('http://localhost:8080/movimentacao/todas', {
+        })
+    }
+
     return (
         <Modal show={props.show} onHide={props.onCloseListener}>
             <Modal.Header closeButton>
@@ -17,23 +41,23 @@ export default function ModalMovimentacaoDeProduto(props) {
                 <Form>
 
                     <Form.Group controlId="">
-                        <Form.Label for="codigo">Código do Produto</Form.Label>
-                        <Form.Control name="codigo" pattern="[a-zA-Z0-9]+" type="email" placeholder="Insira o código" required={true} />
+                        <Form.Label for="codigoProduto">Código do Produto</Form.Label>
+                        <Form.Control name="codigoProduto" pattern="[a-zA-Z0-9]+" type="email" placeholder="Insira o código" required={true} />
                         <Form.Control.Feedback type="invalid">Este campo não está válido</Form.Control.Feedback>
                         <Form.Text className="text-muted">Código com caracteres alfanuméricos.</Form.Text>
-                        <Button className="mt-8" variant="primary" size="sm" block>Buscar</Button>
+                        <Button className="mt-8" variant="primary" size="sm" onClick={clickHandlerBusca} block>Buscar</Button>
                     </Form.Group>
 
                     <hr />
 
                     <Form.Group controlId="">
-                        <Form.Label for="codigo">Categoria</Form.Label>
+                        <Form.Label for="categoria">Categoria</Form.Label>
                         <Form.Control name="categoria" readOnly/>
                         <Form.Control.Feedback type="invalid">Quantidade inválida</Form.Control.Feedback>
                     </Form.Group>
 
                     <Form.Group controlId="">
-                        <Form.Label for="codigo">Preço</Form.Label>
+                        <Form.Label for="preco">Preço</Form.Label>
                         <Form.Control name="preco" required />
                         <Form.Control.Feedback type="invalid">Quantidade inválida</Form.Control.Feedback>
                     </Form.Group>
@@ -41,24 +65,18 @@ export default function ModalMovimentacaoDeProduto(props) {
                     <hr />
 
                     <Form.Group controlId="">
-                        <Form.Label for="codigo">Forncecedor</Form.Label>
+                        <Form.Label for="fornecedor">Forncecedor</Form.Label>
                         <Form.Control as="select" required>
-                            <option value="" selected disabled>Escolha...</option>
-                            <option value="AX">Look</option>
-                            <option value="AL">Belissima</option>
-                            <option value="DZ">Camila`s Fashion</option>
-                            <option value="AS">Amanda</option>
-                            <option value="AD">Dandara</option>
-                            <option value="AO">Outlet</option>
-                            <option value="AI">Louney</option>
-                            <option value="AF">Outras</option>
+                            {fornecedor.forEach(fornecedor => (
+                                <option value="" selected disabled>{categoria}</option>
+                            ))}
                         </Form.Control>
                     </Form.Group>
 
                     <hr />
 
                     <Form.Group controlId="">
-                        <Form.Label for="codigo">Marca</Form.Label>
+                        <Form.Label for="marca">Marca</Form.Label>
                         <Form.Control name="marca" readOnly/>
                         <Form.Control.Feedback type="invalid">Quantidade inválida</Form.Control.Feedback>
                     </Form.Group>
@@ -77,6 +95,15 @@ export default function ModalMovimentacaoDeProduto(props) {
 
                     <br/>
 
+                    <Form.Group>
+                        <Form.Label for="tipoMovimentacao">Tipo Movimentação</Form.Label>
+                        <Form.Control id="tipoMovimentacao" as="select" required>
+                            <option value="" selected disabled>Escolha...</option>
+                            <option value="aumento">AUMENTO</option>
+                            <option value="retirada">RETIRADA</option>
+                        </Form.Control>
+                    </Form.Group>
+
                     <Form.Group controlId="">
                         <Form.Label for="codigo">Quantidade</Form.Label>
                         <Form.Control className="mb-2" name="quantidade" required />
@@ -86,7 +113,7 @@ export default function ModalMovimentacaoDeProduto(props) {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={props.handleCloseListener} block>
+                <Button variant="primary" onClick={clickHandler} block>
                     Efetuar {props.saida ? 'saída' : 'entrada'}
                 </Button>
             </Modal.Footer>

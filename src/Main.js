@@ -8,6 +8,7 @@ import ModalAtualizaUsuario from "./Modals/ModalAtualizaUsuario";
 import ModalAtualizarForncedor from "./Modals/ModalAtualizarFornecedor";
 import ModalRelatorioVenda from "./Modals/ModalRelatorioVenda";
 import ModalRelatorioEstoque from "./Modals/ModalRelatorioEstoque";
+import axios from "axios";
 
 const Section = styled.section`
     display: flex ;
@@ -104,18 +105,30 @@ export default function Main() {
     const handleCloseAtualizarUsuario = () => setShowAtualizarUsuario(false)
     const handleShowAtualizarUsuario = () => setShowAtualizarUsuario(true)
 
+    const [nomeDoLogin, setNomeDoLogin] = useState()
+
+    axios.get('http://localhost:8080/login', {
+        "nomeDoLogin" : nomeDoLogin
+    })
+
     return (
         <main className="segundo--container">
             <Section>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
                 <Cartao>
-                    <Titulo>Movimentação de Produtos</Titulo>
+                    <Titulo>Registro de Movimentações</Titulo>
                     <GrupoDeBotoes>
-                        <Botao onClick={handleShowModalEntrada}>Entrada</Botao>
-                        <Botao onClick={handleShowModalSaida}>Saída</Botao>
+                        <Botao onClick={handleShowModalEntrada}>Registrar</Botao>
                     </GrupoDeBotoes>
                     <ModalMovimentacaoDeProduto show={showModalEntrada} onCloseListener={handleCloseModalEntrada} />
-                    <ModalMovimentacaoDeProduto show={showModalSaida} saida={true} onCloseListener={handleCloseModalSaida} />
                 </Cartao>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
                 <Cartao>
                     <Titulo>Novo Cadastro</Titulo>
                     <GrupoDeBotoes>
@@ -127,17 +140,22 @@ export default function Main() {
                     <ModalCadastroFornecedor show={showModalCadastroFornecedor} onCloseListener={handleCloseCadastroFornecedor} />
                     <ModalCadastroUsuario show={showModalCadastroUsuario} onCloseListener={handleCloseCadastroUsuario} />
                 </Cartao>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
                 <Cartao>
                     <Titulo>Gerar Relatório</Titulo>
                     <GrupoDeBotoes>
                         <Botao onClick={handleShowRelatorioEstoque}>Estoque</Botao>
-                        <Botao onClick={handleShowRelatorioVenda}>Venda</Botao>
                     </GrupoDeBotoes>
                     <ModalRelatorioEstoque show={showModalRelatorioEstoque} onCloseListener={handleCloseRelatorioEstoque} />
-                    <ModalRelatorioVenda show={showModalRelatorioVenda} onCloseListener={handleCloseRelatorioVenda} />
                 </Cartao>
-
-                <Cartao>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                {true ? (<Cartao>
                     <Titulo>Atualizar Dados</Titulo>
                     <GrupoDeBotoes>
                         <Botao onClick={handleShowAtualizarFornecedor}>Fornecedor</Botao>
@@ -145,7 +163,8 @@ export default function Main() {
                     </GrupoDeBotoes>
                     <ModalAtualizarForncedor show={showModalAtualizarFornecedor} onCloseListener={handleCloseAtualizarFornecedor} />
                     <ModalAtualizaUsuario show={showModalAtualizarUsuario} onCloseListener={handleCloseAtualizarUsuario} />
-                </Cartao>
+                </Cartao>) : ''}
+
             </Section>
         </main >
     );

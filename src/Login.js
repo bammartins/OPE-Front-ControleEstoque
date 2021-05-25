@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import axios from "axios";
 import {Button} from "react-bootstrap";
@@ -87,17 +87,23 @@ const Botao = styled.button`
 export default function Login() {
     const [login, setLogin] = useState('')
     const [senha, setSenha] = useState('')
+    let history = useHistory()
 
-    const clickHandler = () => {
+
+    const clickHandler = (log) => {
+        log.preventDefault()
         axios.post('http://localhost:8080/login', {
             "login" : login,
             "senha" : senha
         })
             .then(response => {
+                history.push('/home')
                 console.log("SÓ SUCESSO ", response);
             })
             .catch(error => {
                 console.log("DEU ERRADO ", error);
+                setLogin("")
+                setSenha("")
                 alert("Login Inválido");
             })
     }
@@ -114,7 +120,7 @@ export default function Login() {
                         <label for="user-name">
                             <LabelImage src="user-icon.svg" alt="User name" />
                         </label>
-                        <Input type="text" placeholder="Username" pattern="[a-zA-Z0-9]+" title="Login com caracteres alfanuméricos"
+                        <Input value={login} type="text" placeholder="Username" pattern="[a-zA-Z0-9]+" title="Login com caracteres alfanuméricos"
                             required onChange={(event) => setLogin(event.target.value)} />
                     </Field>
 
@@ -122,7 +128,7 @@ export default function Login() {
                         <label for="user-password">
                             <LabelImage src="pass-icon.svg" alt="User password" />
                         </label>
-                        <Input type="password" placeholder="Password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$"
+                        <Input value={senha} type="password" placeholder="Password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$"
                             title="Mínimo 4 caracteres, pelo menos 1 letra e 1 número" required
                             onChange={(event) => setSenha(event.target.value)} />
                     </Field>

@@ -13,7 +13,6 @@ const Checkbox = styled(Form.Check)`
     align-items: center;
 `;
 export default function ModalCadastroProduto(props) {
-    const [categoria, setCategoria] = useState('')
     const [preco, setPreco] = useState('')
     const [quantidade, setQuantidade] = useState('')
     const [modelo, setModelo] = useState('')
@@ -22,9 +21,10 @@ export default function ModalCadastroProduto(props) {
     const [fornecedor, setFornecedor] = useState('')
     const [tamanho, setTamanho] = useState('')
 
+    let categoria = []
+
     const clickHandler = () => {
         axios.post('http://localhost:8080/produtos', {
-            "categoria" : categoria,
             "preco" : preco,
             "quantidade" : quantidade,
             "modelo" : modelo,
@@ -41,6 +41,11 @@ export default function ModalCadastroProduto(props) {
             })
     }
 
+    axios.get('http://localhost:8080/categorias/todas?', {
+    }).then(response => {
+        categoria = response.data
+    })
+
     return (
         <Modal show={props.show} onHide={props.onCloseListener}>
             <Modal.Header closeButton>
@@ -49,9 +54,12 @@ export default function ModalCadastroProduto(props) {
             <Modal.Body>
                 <Form>
                     <Form.Group controlId="">
-                        <Form.Label for="codigo">Categoria</Form.Label>
-                        <Form.Control name="categoria" required />
-                        <Form.Control.Feedback type="invalid">Quantidade inválida</Form.Control.Feedback>
+                        <Form.Label for="categoria">Categoria</Form.Label>
+                        <Form.Control as="select" required>
+                            {categoria.forEach(categoria => (
+                                <option value="" selected disabled>{categoria}</option>
+                            ))}
+                        </Form.Control>
                     </Form.Group>
 
                     <Form.Group controlId="">

@@ -35,19 +35,79 @@ export default function ModalRelatorioEstoque(props) {
     return (
         <Modal show={props.show} onHide={props.onCloseListener}>
             <Modal.Header closeButton>
-                <Modal.Title>Gerar relatório de estoque</Modal.Title>
+                <Modal.Title>Gerar relatório</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+                <Label for="relatorio">Busca por...</Label>
+                <Form.Control as="select" required>
+                    <option value="" selected disabled>Escolha...</option>
+                    <option value="produto">Produtos</option>
+                    <option value="usuario">Usuários</option>
+                    <option value="fornecedor">Fornecedores</option>
+                    <option value="vendasDiarias">Vendas Diárias</option>
+                    <option value="vendasMensais">Vendas Mensais</option>
+                    <option value="comprasDiarias">Compras Diárias</option>
+                    <option value="comprasMensais">Compras Mensais</option>
+                    <option value="contatoFornecedores">Contato Fornecedores</option>
+                </Form.Control>
+
+                <hr />
                 <Form>
                     <Form.Group>
                         <Form.Row>
                             <Col>
-                                <Label for="codigo">Data Início</Label>
-                                <Form.Control name="dataInicio" required/>
+                                <Label for="codigo">Dia</Label>
+                                <Form.Control as="select" required>
+                                    <option value="" selected disabled>Escolha...</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+                                </Form.Control>
                             </Col>
                             <Col>
-                                <Label for="codigo">Data Fim</Label>
-                                <Form.Control name="dataFim" required>
+                                <Label for="mes">Mês</Label>
+                                <Form.Control as="select" required>
+                                    <option value="" selected disabled>Escolha...</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
                                 </Form.Control>
                             </Col>
                         </Form.Row>
@@ -55,81 +115,11 @@ export default function ModalRelatorioEstoque(props) {
 
                     <hr />
 
-                    <Label for="fornecedor">Fornecedor</Label>
-                    <Form.Control as="select" required>
-                        {fornecedor.forEach(fornecedor => (
-                            <option value="" selected disabled>{fornecedor}</option>
-                        ))}
-                    </Form.Control>
-
-                    <hr/>
-
-                    <Label for="categoria">Categoria</Label>
-                    <Form.Control as="select" required>
-                        {categoria.forEach(categoria => (
-                            <option value="" selected disabled>{categoria}</option>
-                        ))}
-                        {/*<option value="" selected disabled>Escolha...</option>*/}
-                        {/*<option value="AG">Todos</option>*/}
-                        {/*<option value="AF">Calça</option>*/}
-                        {/*<option value="AX">Camiseta</option>*/}
-                        {/*<option value="AL">Vestido</option>*/}
-                        {/*<option value="DZ">Biquini</option>*/}
-                        {/*<option value="AS">Sapato</option>*/}
-                        {/*<option value="AD">Bolsa</option>*/}
-                        {/*<option value="AO">Cinto</option>*/}
-                        {/*<option value="AI">Shorts</option>*/}
-                        {/*<option value="AQ">Saia</option>*/}
-                        {/*<option value="AG">Lenço</option>*/}
-                    </Form.Control>
-
-                    <hr />
-
-                    <Label for="marca">Marca</Label>
-                    <Form.Control as="select" required>
-                        {marca.forEach(marca => (
-                            <option value="" selected disabled>{marca}</option>
-                        ))}
-                    </Form.Control>
-
-                    <hr />
-
-                    <Form.Label for="codigo">Tamanho</Form.Label>
-                    {["P", "M", "G", "GG"].map(size => (
-                        <Checkbox
-                            name="paymentMethod"
-                            required
-                            type="checkbox"
-                            label={"Tamanho " + size}
-                            id={`size-${size.toLowerCase()}`} />
-                    ))}
-
-                    <hr />
-
-                    <Label for="modelo">Modelo</Label>
-                    <Form.Control as="select" required>
-                        {modelo.forEach(modelo => (
-                            <option value="" selected disabled>{modelo}</option>
-                        ))}
-                    </Form.Control>
-
-                    <hr />
-
-                    <Label for="cor">Cor</Label>
-                    <Form.Control as="select" required>
-                        {cor.forEach(cor => (
-                            <option value="" selected disabled>{cor}</option>
-                        ))}
-                    </Form.Control>
-
-                    <hr/>
-
-                    <Label for="preco">Preço</Label>
-                    <Form.Control as="select" required>
-                        {preco.forEach(preco => (
-                            <option value="" selected disabled>{preco}</option>
-                        ))}
-                    </Form.Control>
+                    <Form.Group controlId="">
+                        <Label for="save">Salvar em...</Label>
+                        <Form.Control name="save" />
+                        <Form.Control.Feedback type="invalid">Este campo não está válido</Form.Control.Feedback>
+                    </Form.Group>
 
                 </Form>
             </Modal.Body>
