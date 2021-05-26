@@ -1,12 +1,15 @@
 import { Modal, Form, Button } from "react-bootstrap";
 import styled from "styled-components";
 import axios from "axios";
+import {useState} from "react";
 
 const Label = styled(Form.Label)`
     margin-bottom: 8px;
 `
 
 export default function ModalAtualizarCategoria(props) {
+
+    const [atualizaCategoria, setAtualizaCategoria] = useState('')
 
     let categorias = []
 
@@ -15,7 +18,22 @@ export default function ModalAtualizarCategoria(props) {
         baseURL: 'http://localhost:8080/categorias/todas'
     }).then(response => {
         categorias = response.data
+        console.log(categorias)
     })
+
+    const clickHandler = () => {
+        axios.post('http://localhost:8080/categoria', {
+            "nome" : atualizaCategoria
+        })
+            .then(response => {
+                console.log("SÓ SUCESSO ", response);
+            })
+            .catch(error => {
+                console.log("DEU ERRADO ", error);
+                setAtualizaCategoria("")
+                console.log("Erro")
+            })
+    }
 
     return (
         <Modal show={props.show} onHide={props.onCloseListener}>
@@ -28,7 +46,7 @@ export default function ModalAtualizarCategoria(props) {
                         <Form.Label for="codigo">Nome</Form.Label>
                         <Form.Control as="select" required>
                             {categorias.forEach(categoria => (
-                                <option value="" selected disabled>{categoria.nome}</option>
+                                <option value="" selected disabled>{categoria.categorias.nome}</option>
                             ))}
                         </Form.Control>
                     </Form.Group>
@@ -41,7 +59,7 @@ export default function ModalAtualizarCategoria(props) {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={props.handleCloseListener} block>
+                <Button variant="primary" onClick={clickHandler} block>
                     Atualizar
             </Button>
             </Modal.Footer>
