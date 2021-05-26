@@ -11,17 +11,16 @@ const Checkbox = styled(Form.Check)`
 `;
 export default function ModalMovimentacaoDeProduto(props) {
 
-    const [codigoProduto, getCodigoProduto] = useState('')
+    // const [codigoProduto, getCodigoProduto] = useState('')
 
     let categoria = []
     let fornecedor = []
     let marca = []
 
     const clickHandlerBusca = () => {
-        axios.get('http://localhost:8080/movimentacao/todas', {
-        })
+        axios.get('http://localhost:8080/movimentacao/todas?')
             .then(response => {
-                console.log(response.data)
+                const codigoProduto = response.data;
             })
     }
 

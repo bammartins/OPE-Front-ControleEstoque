@@ -21,7 +21,7 @@ export default function ModalCadastroProduto(props) {
     const [fornecedor, setFornecedor] = useState('')
     const [tamanho, setTamanho] = useState('')
 
-    let categoria = []
+    // let categoria = []
 
     const clickHandler = () => {
         axios.post('http://localhost:8080/produtos', {
@@ -43,7 +43,7 @@ export default function ModalCadastroProduto(props) {
 
     // axios.get('http://localhost:8080/categorias/todas?', {
     // }).then(response => {
-    //     response.data.nome
+    //     categoria = response.data
     // })
 
     return (
@@ -53,12 +53,12 @@ export default function ModalCadastroProduto(props) {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Group controlId="">
+                    <Form.Group controlId="categoria">
                         <Form.Label for="categoria">Categoria</Form.Label>
                         <Form.Control as="select" required>
-                            {categoria.forEach(categoria => (
-                                <option value="" selected disabled>{categoria}</option>
-                            ))}
+                            {/*{categoria.forEach(categoria => (*/}
+                            {/*    <option value="" selected disabled>{categoria}</option>*/}
+                            {/*))}*/}
                         </Form.Control>
                     </Form.Group>
                     {/*

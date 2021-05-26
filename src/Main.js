@@ -4,8 +4,11 @@ import ModalMovimentacaoDeProduto from "./Modals/ModalMovimentacaoDeProduto";
 import ModalCadastroFornecedor from "./Modals/ModalCadastroFornecedor";
 import ModalCadastroUsuario from "./Modals/ModalCadastroUsuario";
 import ModalCadastroProduto from "./Modals/ModalCadastroProduto";
+import ModalCadastroCategoria from "./Modals/ModalCadastroCategoria";
 import ModalAtualizaUsuario from "./Modals/ModalAtualizaUsuario";
 import ModalAtualizarForncedor from "./Modals/ModalAtualizarFornecedor";
+import ModalAtualizarProduto from "./Modals/ModalAtualizarProduto";
+import ModalAtualizarCategoria from "./Modals/ModalAtualizarCategoria";
 import ModalRelatorioVenda from "./Modals/ModalRelatorioVenda";
 import ModalRelatorioEstoque from "./Modals/ModalRelatorioEstoque";
 import axios from "axios";
@@ -68,8 +71,11 @@ export default function Main() {
     const [showModalCadastroProduto, setShowCadastroProduto] = useState(false);
     const [showModalCadastroFornecedor, setShowCadastroFornecedor] = useState(false);
     const [showModalCadastroUsuario, setShowCadastroUsuario] = useState(false)
+    const [showModalCadastroCategoria, setShowCadastroCategoria] = useState(false)
     const [showModalRelatorioEstoque, setShowRelatorioEstoque] = useState(false)
     const [showModalRelatorioVenda, setShowRelatorioVenda] = useState(false)
+    const [showModalAtualizarProduto, setShowAtualizarProduto] = useState(false)
+    const [showModalAtualizarCategoria, setShowAtualizarCategoria] = useState(false)
     const [showModalAtualizarFornecedor, setShowAtualizarFornecedor] = useState(false)
     const [showModalAtualizarUsuario, setShowAtualizarUsuario] = useState(false)
 
@@ -85,6 +91,9 @@ export default function Main() {
     const handleCloseCadastroProduto = () => setShowCadastroProduto(false)
     const handleShowCadastroProduto = () => setShowCadastroProduto(true)
 
+    const handleCloseCadastroCategoria = () => setShowCadastroCategoria(false)
+    const handleShowCadastroCategoria = () => setShowCadastroCategoria(true)
+
     const handleCloseCadastroFornecedor = () => setShowCadastroFornecedor(false)
     const handleShowCadastroFornecedor = () => setShowCadastroFornecedor(true)
 
@@ -99,6 +108,12 @@ export default function Main() {
     const handleShowRelatorioVenda = () => setShowRelatorioVenda(true)
 
     //Atualizar Dados
+    const handleCloseAtualizarProduto = () => setShowAtualizarProduto(false)
+    const handleShowAtualizarProduto = () => setShowAtualizarProduto(true)
+
+    const handleCloseAtualizarCategoria = () => setShowAtualizarCategoria(false)
+    const handleShowAtualizarCategoria = () => setShowAtualizarCategoria(true)
+
     const handleCloseAtualizarFornecedor = () => setShowAtualizarFornecedor(false)
     const handleShowAtualizarFornecedor = () => setShowAtualizarFornecedor(true)
 
@@ -133,10 +148,12 @@ export default function Main() {
                     <Titulo>Novo Cadastro</Titulo>
                     <GrupoDeBotoes>
                         <Botao onClick={handleShowCadastroProduto}>Produto</Botao>
+                        <Botao onClick={handleShowCadastroCategoria}>Categoria</Botao>
                         <Botao onClick={handleShowCadastroFornecedor}>Fornecedor</Botao>
                         <Botao onClick={handleShowCadastroUsuario}>Usuário</Botao>
                     </GrupoDeBotoes>
                     <ModalCadastroProduto show={showModalCadastroProduto} onCloseListener={handleCloseCadastroProduto} />
+                    <ModalCadastroCategoria show={showModalCadastroCategoria} onCloseListener={handleCloseCadastroCategoria} />
                     <ModalCadastroFornecedor show={showModalCadastroFornecedor} onCloseListener={handleCloseCadastroFornecedor} />
                     <ModalCadastroUsuario show={showModalCadastroUsuario} onCloseListener={handleCloseCadastroUsuario} />
                 </Cartao>
@@ -163,9 +180,13 @@ export default function Main() {
                 {true ? (<Cartao>
                     <Titulo>Atualizar Dados</Titulo>
                     <GrupoDeBotoes>
+                        <Botao onClick={handleShowAtualizarProduto}>Produto</Botao>
+                        <Botao onClick={handleShowAtualizarCategoria}>Categoria</Botao>
                         <Botao onClick={handleShowAtualizarFornecedor}>Fornecedor</Botao>
                         <Botao onClick={handleShowAtualizarUsuario}>Usuário</Botao>
                     </GrupoDeBotoes>
+                    <ModalAtualizarProduto show={showModalAtualizarProduto} onCloseListener={handleCloseAtualizarProduto} />
+                    <ModalAtualizarCategoria show={showModalAtualizarCategoria} onCloseListener={handleCloseAtualizarCategoria} />
                     <ModalAtualizarForncedor show={showModalAtualizarFornecedor} onCloseListener={handleCloseAtualizarFornecedor} />
                     <ModalAtualizaUsuario show={showModalAtualizarUsuario} onCloseListener={handleCloseAtualizarUsuario} />
                 </Cartao>) : ''}
